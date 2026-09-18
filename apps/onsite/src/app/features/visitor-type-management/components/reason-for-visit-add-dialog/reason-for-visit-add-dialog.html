@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Add reason for visit</h2>
+<mat-dialog-content>
+  <mat-form-field class="w-full">
+    <mat-label>Description</mat-label>
+    <input
+      matInput
+      [value]="description()"
+      (input)="description.set($any($event.target).value)"
+    />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <city-button variant="secondary" (click)="cancel()">Cancel</city-button>
+  <city-button variant="primary" [disabled]="!description()" (click)="save()">Save</city-button>
+</mat-dialog-actions>

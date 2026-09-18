@@ -1,0 +1,22 @@
+<section class="py-4">
+  <h1 class="font-size-h1 color-city-blue">Config-driven form — Formly + city- components</h1>
+  <p class="font-size-small-text color-dark-blue pt-2 max-w-sm">
+    Every field below comes from <code>public/formly-config.json</code>,
+    fetched at runtime — not from markup here, and not from a TypeScript
+    array either. Formly builds the form from that JSON and renders each
+    field through a CityInput/CitySelect/CityDatepicker under the hood.
+    Pick "Contractor" as the role to see a field appear that isn't in the
+    other two, driven entirely by the JSON's own conditional expression.
+  </p>
+
+  @if (submitted()) {
+    <p class="font-size-small-text color-city-blue pt-4">Submitted: {{ model | json }}</p>
+  } @else if (fields(); as fields) {
+    <form class="flex flex-col gap-4 pt-4 max-w-sm" [formGroup]="form" (ngSubmit)="handleSubmit()">
+      <formly-form [form]="form" [fields]="fields" [model]="model" />
+      <city-button [disabled]="formInvalid()" length="full">Submit</city-button>
+    </form>
+  } @else {
+    <p class="font-size-small-text color-dark-blue pt-4">Loading form-config.json…</p>
+  }
+</section>

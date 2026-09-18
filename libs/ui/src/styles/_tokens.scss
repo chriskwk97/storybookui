@@ -1,0 +1,22 @@
+// Single source of truth for City's color tokens. Tailwind v4 reads any
+// `--color-*` custom property declared inside `@theme` and auto-generates
+// the matching utility classes (bg-*, text-*, border-*, ring-*, …) from it.
+// Every consuming app imports this file instead of redeclaring these
+// values — one place to change a color, every app picks it up identically.
+@theme {
+  --color-city-primary: #002f87;
+  --color-city-secondary: #111c4e;
+  --color-city-teal-dark: #008996;
+  --color-city-teal-medium: #009383;
+  --color-city-teal-light: #3bd4ae;
+  --color-city-dark-blue: #111c4e;
+  --color-city-white: #ffffff;
+  --color-city-grey: #c8c9cc;
+  --color-city-blue: #002f87;
+  --color-city-neutral: #cfd2d3;
+  --color-city-green: #80bc00;
+  --color-city-neutral-light: #f6f6f6;
+  --color-city-red: #ff3131;
+  --color-city-yellow: #fbbf24;
+  --color-city-blue-green: #069;
+}

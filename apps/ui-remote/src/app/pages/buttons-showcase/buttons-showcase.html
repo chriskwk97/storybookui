@@ -1,0 +1,17 @@
+<section class="py-4">
+  <h1 class="font-size-h1 color-city-blue">CityButton — every combination</h1>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+    @for (variant of variants; track variant) {
+      @for (size of sizes; track size) {
+        <div class="flex flex-col items-start gap-2">
+          <city-button [variant]="variant" [size]="size">Continue</city-button>
+          <span class="font-size-small-text color-dark-blue">variant="{{ variant }}" size="{{ size }}"</span>
+        </div>
+      }
+    }
+    <div class="flex flex-col items-start gap-2">
+      <city-button variant="primary" size="md" [disabled]="true">Continue</city-button>
+      <span class="font-size-small-text color-dark-blue">disabled="true"</span>
+    </div>
+  </div>
+</section>

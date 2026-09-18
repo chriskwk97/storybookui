@@ -1,0 +1,48 @@
+[
+  {
+    "key": "fullName",
+    "type": "city-text",
+    "props": {
+      "label": "Full name",
+      "placeholder": "Jane Doe",
+      "required": true,
+      "errorMessage": "Full name is required."
+    }
+  },
+  {
+    "key": "role",
+    "type": "city-select",
+    "props": {
+      "label": "Role",
+      "required": true,
+      "errorMessage": "Please select a role.",
+      "options": [
+        { "value": "visitor", "label": "Visitor" },
+        { "value": "contractor", "label": "Contractor" },
+        { "value": "staff", "label": "Staff" }
+      ]
+    }
+  },
+  {
+    "key": "company",
+    "type": "city-text",
+    "props": {
+      "label": "Company name",
+      "placeholder": "Acme Inc.",
+      "required": true,
+      "errorMessage": "Company name is required for contractors."
+    },
+    "expressions": {
+      "hide": "!(model.role === \"contractor\")"
+    }
+  },
+  {
+    "key": "startDate",
+    "type": "city-date",
+    "props": {
+      "label": "Start date",
+      "required": true,
+      "errorMessage": "Start date is required."
+    }
+  }
+]

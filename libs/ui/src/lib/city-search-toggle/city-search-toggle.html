@@ -1,0 +1,22 @@
+@if (!isOpen()) {
+  <button mat-fab color="primary" [attr.aria-label]="placeholder()" (click)="open()">
+    <mat-icon>search</mat-icon>
+  </button>
+} @else {
+  <mat-form-field>
+    <mat-label>{{ placeholder() }}</mat-label>
+    <input
+      matInput
+      [value]="query()"
+      (input)="query.set($any($event.target).value)"
+    />
+    <button
+      matSuffix
+      mat-icon-button
+      [attr.aria-label]="'Close ' + placeholder()"
+      (click)="close()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+}

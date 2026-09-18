@@ -1,0 +1,80 @@
+@use '@angular/material' as mat;
+@use '../../../libs/ui/src/styles/material-overrides';
+
+// Cascade layer, not `!important`: layers declared later always win over
+// earlier ones regardless of selector specificity. `material` is declared
+// here, first — Tailwind's own layers (declared by `@import "tailwindcss"`
+// below) come after, so any Tailwind utility beats Material's CSS without
+// forcing anything. Every consuming app must import this file (or one
+// structured the same way) so the layer order stays consistent.
+@layer material {
+  @include mat.core();
+
+  :root {
+    @include mat.theme(
+      (
+        color: mat.$blue-palette,
+        typography: Roboto,
+        density: 0,
+      )
+    );
+    @include material-overrides.apply();
+  }
+
+  @include mat.elevation-classes();
+  @include mat.app-background();
+}
+
+@import "tailwindcss";
+
+// Color tokens now live in libs/ui — this app no longer owns its own copy.
+@import "../../../libs/ui/src/styles/tokens";
+
+:root {
+  --city-primary: #002f87;
+  --city-secondary: #111c4e;
+  --city-teal-dark: #008996;
+  --city-teal-medium: #009383;
+  --city-teal-light: #3bd4ae;
+  --city-dark-blue: #111c4e;
+  --city-white: #ffffff;
+  --city-grey: #c8c9cc;
+  --city-blue: #002f87;
+  --city-neutral: #cfd2d3;
+  --city-green: #80bc00;
+  --city-neutral-light: #f6f6f6;
+  --city-red: #ff3131;
+  --city-yellow: #fbbf24;
+  --city-blue-green: #069;
+  --city-font-family: 'Roboto', 'General Sans', sans-serif;
+}
+
+body {
+  font-family: var(--city-font-family);
+  font-size: 1em;
+  font-weight: 500;
+  margin: 0;
+}
+
+.font-size-h1 {
+  font-size: 1.75em;
+  font-weight: 600;
+}
+
+.font-size-h3 {
+  font-size: 1.25em;
+  font-weight: 600;
+}
+
+.font-size-small-text {
+  font-size: 0.875em;
+  font-weight: 500;
+}
+
+.color-city-blue {
+  color: var(--city-blue);
+}
+
+.color-dark-blue {
+  color: var(--city-dark-blue);
+}

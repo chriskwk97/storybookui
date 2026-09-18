@@ -1,0 +1,8 @@
+<section class="p-4 max-w-md mx-auto">
+  <h1 class="font-size-h1 color-city-blue">Welcome</h1>
+  <p class="color-dark-blue">Sign in to start your visit.</p>
+  <city-button variant="primary" size="md" (click)="onSignIn()">Sign in</city-button>
+  @if (jobService.activeJob(); as job) {
+    <p class="font-size-small-text">Active job: {{ job }}</p>
+  }
+</section>

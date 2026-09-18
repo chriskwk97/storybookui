@@ -1,0 +1,11 @@
+<section class="p-4 max-w-md mx-auto">
+  @if (!closedownService.closed()) {
+    <h1 class="font-size-h1 color-city-blue">Close down session</h1>
+    <p class="color-dark-blue">This will end the current site session.</p>
+    <city-button variant="destructive" size="md" (click)="onConfirm()">
+      Confirm closedown
+    </city-button>
+  } @else {
+    <p class="color-city-blue">Session closed.</p>
+  }
+</section>

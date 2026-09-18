@@ -1,0 +1,28 @@
+@use '@angular/material' as mat;
+
+// Redirects the tokens Material's own theme would otherwise drive with its
+// system `primary` color (mat.$blue-palette) onto city-primary instead, so a
+// focused outlined field matches the same brand color city-button already
+// uses. `@include mat.form-field-overrides()` is Material's own theming API
+// for this — it swaps specific design tokens, so there's no specificity
+// fight with Material's CSS and no `!important` needed here either.
+@mixin apply() {
+  @include mat.form-field-overrides(
+    (
+      outlined-focus-outline-color: var(--color-city-primary),
+      outlined-focus-label-text-color: var(--color-city-primary),
+      outlined-hover-outline-color: var(--color-city-primary),
+    )
+  );
+  @include mat.select-overrides(
+    (
+      focused-arrow-color: var(--color-city-primary),
+    )
+  );
+  @include mat.datepicker-overrides(
+    (
+      calendar-date-selected-state-background-color: var(--color-city-primary),
+      calendar-date-today-selected-state-outline-color: var(--color-city-primary),
+    )
+  );
+}

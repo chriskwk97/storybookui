@@ -1,0 +1,34 @@
+<section class="p-4 max-w-md mx-auto">
+  <h1 class="font-size-h1 color-city-blue">OnSite UI — modernization proof</h1>
+  <p class="color-dark-blue">
+    A small, standalone proof of the City Onsite UI frontend modernization
+    proposal — click through in order to see each piece.
+  </p>
+
+  <nav class="flex flex-col gap-3 pt-4">
+    <a routerLink="/buttons" class="color-city-blue">
+      1. Buttons — the shared CityButton component, loaded from a separate federated app
+    </a>
+    <a routerLink="/closedown" class="color-city-blue">
+      2. Closedown — a small, flat feature folder
+    </a>
+    <a routerLink="/visitor-sign-in" class="color-city-blue">
+      3. Visitor sign-in — a sub-foldered feature with a shared core service
+    </a>
+    <a routerLink="/architecture" class="color-city-blue">
+      4. Architecture — the folder-restructuring proposal, before and after
+    </a>
+    <a routerLink="/visitor-type-management" class="color-city-blue">
+      5. Visitor type management — signals-only, zoneless, ported from the real app's worst subscription offender
+    </a>
+  </nav>
+
+  @if (deviceInfo(); as device) {
+    <div class="pt-6 border-t mt-6">
+      <p class="font-size-small-text color-dark-blue">
+        Running via Capacitor's web fallback on: {{ device.platform }} /
+        {{ device.operatingSystem }} / {{ device.model }}
+      </p>
+    </div>
+  }
+</section>

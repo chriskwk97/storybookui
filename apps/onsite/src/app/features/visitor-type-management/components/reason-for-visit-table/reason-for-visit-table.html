@@ -1,0 +1,33 @@
+<section class="p-4 max-w-2xl mx-auto">
+  <h2 class="font-size-h2 color-city-blue">Reason for Visit</h2>
+  <p class="font-size-small-text color-dark-blue">
+    Signals-only rebuild of the real app's worst subscription offender —
+    zero manual <code>.subscribe()</code>, zoneless change detection.
+  </p>
+
+  <div class="flex items-center justify-between gap-3 py-3">
+    <mat-checkbox [checked]="isActiveOnly()" (change)="onActiveOnlyChange($event)">
+      Active only
+    </mat-checkbox>
+
+    <city-search-toggle
+      placeholder="Search reasons"
+      [query]="searchTerm()"
+      (queryChange)="searchTerm.set($event)"
+    />
+
+    <button mat-fab color="primary" aria-label="Add reason for visit" (click)="openAddDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  @if (reasonsResource.isLoading()) {
+    <p class="font-size-small-text color-dark-blue">Loading…</p>
+  } @else {
+    <city-data-table
+      [rows]="sortedReasons()"
+      [columns]="columns"
+      (sortChange)="onSortChange($event)"
+    />
+  }
+</section>

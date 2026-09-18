@@ -1,0 +1,42 @@
+<section class="py-4">
+  <h1 class="font-size-h1 color-city-blue">CityInput + CityButton — a full form</h1>
+
+  @if (submitted()) {
+    <p class="font-size-small-text color-city-blue pt-4">
+      Submitted: {{ form.getRawValue() | json }}
+    </p>
+  } @else {
+    <form class="flex flex-col gap-4 pt-4 max-w-sm" [formGroup]="form" (ngSubmit)="handleSubmit()">
+      <city-input
+        formControlName="name"
+        label="Name"
+        placeholder="Jane Doe"
+        [required]="true"
+        [errorMessage]="nameError()"
+      />
+      <city-input
+        formControlName="email"
+        label="Email"
+        type="email"
+        placeholder="jane@example.com"
+        [required]="true"
+        [errorMessage]="emailError()"
+      />
+      <city-select
+        formControlName="returningVisitor"
+        label="Returning visitor?"
+        [required]="true"
+        [options]="yesNoOptions"
+        [errorMessage]="returningVisitorError()"
+      />
+      <city-select
+        formControlName="requiresBadge"
+        label="Requires a visitor badge?"
+        [required]="true"
+        [options]="yesNoOptions"
+        [errorMessage]="requiresBadgeError()"
+      />
+      <city-button [disabled]="formInvalid()" length="full">Submit</city-button>
+    </form>
+  }
+</section>

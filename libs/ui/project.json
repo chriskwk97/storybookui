@@ -1,0 +1,43 @@
+{
+  "name": "ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "configDir": "libs/ui/.storybook",
+        "outputDir": "dist/storybook/ui",
+        "tsConfig": "libs/ui/.storybook/tsconfig.json",
+        "styles": ["apps/onsite/src/styles.scss"],
+        "compodoc": false
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "browserTarget": "onsite:esbuild:development",
+        "configDir": "libs/ui/.storybook",
+        "tsConfig": "libs/ui/.storybook/tsconfig.json",
+        "styles": ["apps/onsite/src/styles.scss"],
+        "compodoc": false,
+        "port": 4400
+      }
+    },
+    "package": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/libs/ui"],
+      "options": {
+        "project": "libs/ui/ng-package.json",
+        "tsConfig": "libs/ui/tsconfig.lib.json"
+      }
+    }
+  }
+}

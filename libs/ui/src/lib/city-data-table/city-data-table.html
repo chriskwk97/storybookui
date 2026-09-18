@@ -1,0 +1,32 @@
+<table
+  mat-table
+  [dataSource]="pagedRows()"
+  [trackBy]="trackByRow"
+  matSort
+  (matSortChange)="onSort($event)"
+>
+  @for (col of columns(); track col.key) {
+    <ng-container [matColumnDef]="col.key">
+      <th mat-header-cell *matHeaderCellDef>
+        @if (col.sortable) {
+          <span mat-sort-header>{{ col.header }}</span>
+        } @else {
+          {{ col.header }}
+        }
+      </th>
+      <td mat-cell *matCellDef="let row">{{ col.cell(row) }}</td>
+    </ng-container>
+  }
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns()"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns()"></tr>
+</table>
+
+<mat-paginator
+  [length]="rows().length"
+  [pageIndex]="pageIndex()"
+  [pageSize]="currentPageSize()"
+  [pageSizeOptions]="pageSizeOptions()"
+  showFirstLastButtons
+  (page)="onPage($event)"
+></mat-paginator>

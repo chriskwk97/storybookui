@@ -1,0 +1,22 @@
+<!--
+  Two separate <button> elements are unavoidable — mat-raised-button vs
+  mat-stroked-button is Material directive matching, resolved statically,
+  not something one button can toggle at runtime. But <ng-content> can't be
+  duplicated across @if/@else branches: it's a documented Angular bug
+  (angular/angular#53310) where projected content renders fine in @else
+  but silently vanishes in @if. Capturing it once here and re-inserting via
+  ngTemplateOutlet in each branch is Angular's own recommended workaround.
+-->
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>
+
+@if (variant() === 'secondary') {
+  <button mat-stroked-button [class]="classes()" [style]="styleVars()" [disabled]="disabled()">
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </button>
+} @else {
+  <button mat-raised-button [class]="classes()" [style]="styleVars()" [disabled]="disabled()">
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </button>
+}

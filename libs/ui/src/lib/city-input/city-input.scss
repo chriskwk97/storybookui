@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+// Chrome/Edge's autofill (e.g. Edge's "Saved info") paints its own
+// background on a filled field via internal :-webkit-autofill UA styling,
+// and ships it with a long transition delay specifically to resist plain
+// background-color overrides — the box-shadow inset trick is the standard
+// way around that.
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--color-city-white) inset;
+  -webkit-text-fill-color: inherit;
+  transition: background-color 5000s ease-in-out 0s;
+}
